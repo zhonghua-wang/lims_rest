@@ -38,10 +38,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'django_filters',
+    'corsheaders',
     'instrument',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -49,6 +52,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
 ]
 
 ROOT_URLCONF = 'lims_rest.urls'
@@ -118,10 +122,26 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
-
+STATIC_ROOT = "static"
+MEDIA_ROOT = "media"
 STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
 
 # upload directory
-UPLOAD_FOLDER = "uploads"
+UPLOAD_FOLDER = 'uploads'
 # custom user
 ACCOUNTS_PROFILE_MODEL = "instrument.User"
+
+# DJANGO REST setting
+REST_FRAMEWORK = {
+    'PAGE_SIZE': 10,
+    'DEFAULT_FILTER_BACKENDS': (
+        'django_filters.rest_framework.DjangoFilterBackend',
+    )
+}
+
+# REST CORS
+CORS_ORIGIN_WHITELIST = ['localhost:4200']
+
+# custom user profile
+AUTH_USER_MODEL = 'instrument.User'
