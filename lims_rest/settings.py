@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'graphene_django',
     'rest_framework',
     'django_filters',
     'corsheaders',
@@ -145,3 +146,8 @@ CORS_ORIGIN_WHITELIST = ['localhost:4200']
 
 # custom user profile
 AUTH_USER_MODEL = 'instrument.User'
+
+# Graphene settings
+GRAPHENE = {
+    'SCHEMA': 'lims_rest.schema.schema' # Where your Graphene schema lives
+}

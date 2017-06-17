@@ -4,6 +4,7 @@ from instrument import models
 
 class UserSerializer(serializers.ModelSerializer):
    # profile = serializers.RelatedField(source='user', read_only=True)
+    
     class Meta:
         model = models.User
         exclude = []
@@ -16,7 +17,6 @@ class DepartmentSerializer(serializers.ModelSerializer):
 
 
 class InstrumentSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = models.Instrument
         exclude = []
