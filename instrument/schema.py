@@ -31,6 +31,21 @@ class InstrumentFilter(django_filters.FilterSet):
         exclude = ['image']
 
 
+class ReservationNode(DjangoObjectType):
+    class Meta:
+        model = models.Reservation
+        interfaces = (relay.Node,)
+
+
+class ReservationFilter(django_filters.FilterSet):
+    user = django_filters.UUIDFilter
+    reserved = django_filters.TimeRangeFilter
+
+    class Meta:
+        model = models.Reservation
+        exclude = []
+
+
 class Query(AbstractType):
     instrument = relay.Node.Field(InstrumentNode)
     all_instruments = DjangoFilterConnectionField(

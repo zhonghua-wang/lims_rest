@@ -44,3 +44,6 @@ class Reservation(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL)
     start_time = models.DateTimeField()
     end_time = models.DateTimeField()
+
+    def __unicode__(self):
+        return self.instrument.name
