@@ -22,6 +22,14 @@ class InstrumentNode(DjangoObjectType):
         model = models.Instrument
         interfaces = (relay.Node,)
 
+    @classmethod
+    def get_node(cls, id, context, info):
+        try:
+            return cls._meta.model.objects.get(pk=id)
+        except cls._meta.model.DoesNotExist:
+            return None
+
+
 
 class InstrumentFilter(django_filters.FilterSet):
     department = django_filters.UUIDFilter
